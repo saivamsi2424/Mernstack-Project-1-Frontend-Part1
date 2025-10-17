@@ -7,10 +7,12 @@ function App() {
   const [name, setName] = useState("");
   const [verifyResult, setVerifyResult] = useState("");
 
+  const BASE_URL = "https://mernfullstackproject-1.onrender.com";
+
   const getMessage = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/message");
+      const res = await fetch(`${BASE_URL}/api/message`);
       const data = await res.json();
       setMessage(data.message);
     } catch (error) {
@@ -28,7 +30,7 @@ function App() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/verify", {
+      const res = await fetch(`${BASE_URL}/api/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name }),
